@@ -7,6 +7,8 @@ pip install git+ssh://git@github.com/windborne/py_grapher.git
 ## Usage
 Example:
 ```python
+from py_grapher import Plotter
+
 with Plotter() as plt:
     x_values = [0, 1, 2]
     y_values = [5, 6, 7]
