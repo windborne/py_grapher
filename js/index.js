@@ -6,5 +6,10 @@ const rootEl = document.createElement('div');
 document.body.appendChild(rootEl);
 
 window.renderGrapher = (props) => {
-    ReactDOM.render(<Grapher {...props} />, rootEl);
+    ReactDOM.render(<Grapher 
+      customBoundsSelectors={props.boundsSelectors}
+      exportStateController={(s) => window.s = s}
+      //defaultBoundsCalculator='initial'
+    	{...props} 
+    />, rootEl);
 };
