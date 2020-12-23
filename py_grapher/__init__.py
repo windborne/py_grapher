@@ -18,6 +18,7 @@ class Plotter:
                 self.output_name = self.title + ".html"
             else:
                 self.output_name = "grapher.html"
+        self.ntraces = 0
 
 
 
@@ -86,5 +87,6 @@ class Plotter:
         self.series.append({
             'name': name,
             'data': data,
-            'axis': axis
+            'axis': axis,
         })
+        self.ntraces += 1

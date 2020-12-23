@@ -10,6 +10,7 @@ window.renderGrapher = (props) => {
       customBoundsSelectors={props.boundsSelectors}
       exportStateController={(s) => window.s = s}
       //defaultBoundsCalculator='initial'
-    	{...props} 
+      sidebarEnabled={true}
+      {...props} 
     />, rootEl);
 };
