@@ -5,7 +5,7 @@ const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin
 module.exports = {
     mode: 'production',
     entry: './js/index.js',
-    devtool: 'inline-source-map',
+    devtool: 'source-map',
     output: {
         path: path.resolve(__dirname, 'py_grapher'),
         filename: 'bundle.js'
@@ -16,19 +16,21 @@ module.exports = {
     module: {
         rules: [
             {
-                test:/\.s?css$/,
-                exclude: /(node_modules|bower_components|build)/,
-                use:['style-loader', 'css-loader', 'sass-loader']
+                test: /(js|grapher).*\.s?css$/,
+                use: ['style-loader', 'css-loader', 'sass-loader']
             },
             {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components|build)/,
+                test: /(js|grapher).*\.js$/,
                 use: {
                     loader: 'babel-loader',
                     options: {
                         presets: ["@babel/preset-env", "@babel/preset-react"]
                     }
                 }
+            },
+            {
+                test: /(js|grapher).*\.(vert|frag|glsl)$/,
+                use: 'webpack-glsl-loader'
             }
         ]
     },

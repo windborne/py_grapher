@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/windborne/py_grapher.git"
   },
+  "browserslist": "> 10%, not dead",
   "author": "",
   "license": "UNLICENSED",
   "bugs": {
@@ -19,7 +20,7 @@
   },
   "homepage": "https://github.com/windborne/py_grapher#readme",
   "dependencies": {
-    "@windborne/grapher": "^1.8.10",
+    "@windborne/grapher": "^1.9.9",
     "react": "^16.12.0",
     "react-dom": "^16.12.0"
   },
@@ -29,10 +30,15 @@
     "@babel/preset-env": "^7.7.6",
     "@babel/preset-react": "^7.7.4",
     "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.1",
     "html-webpack-inline-source-plugin": "0.0.10",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10",
-    "webpack-dev-server": "^3.10.2"
+    "webpack-dev-server": "^3.10.2",
+    "webpack-glsl-loader": "^1.0.1"
   }
 }

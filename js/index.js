@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Grapher from "@windborne/grapher";
+import Multigrapher from "@windborne/grapher/src/multigrapher.js";
 
 const rootEl = document.createElement('div');
 document.body.appendChild(rootEl);
 
 window.renderGrapher = (props) => {
-    ReactDOM.render(<Grapher 
+    ReactDOM.render(<Multigrapher
       customBoundsSelectors={props.boundsSelectors}
       exportStateController={(s) => window.s = s}
       //defaultBoundsCalculator='initial'

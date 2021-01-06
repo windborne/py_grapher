@@ -29,10 +29,10 @@ The `plot` method takes in three arguments:
 ## Developing
 
 ### Updating the javascript
-To rebuild the frontent, run `npm run build`. 
+To rebuild the frontend, run `npm run build`. 
 This will update py_grapher/index.html with the latest version.
 
-You can upgrade the underlying grapher engine by updating the version in package.json, then re-running `npm install`. This requires that you or someone else has pushed a new version.
+You can upgrade the underlying grapher engine by updating the version in package.json, then re-running `npm install`, or by running `npm upgrade @windborne/grapher`. This requires that you or someone else has pushed a new version.
 
 If it can't install the grapher engine for authentication reasons, you need to authenticate with github packages as an npm registry. 
 See [github documentation](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages#authenticating-to-github-packages) for instructions.  

@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='py_grapher',
-    version='0.2.0',
+    version='0.3.0',
     description='Python wrapper for windborne graphing library',
     url='git@github.com:windborne/py_grapher.git',
     author='Kai Marshland',
