@@ -3,6 +3,8 @@ import pathlib
 import json
 import os
 import datetime
+
+
 class Plotter:
     def __init__(self, output_name=None,title=None,format_time=None):
         self.series = []
@@ -73,7 +75,7 @@ class Plotter:
             i +=1
         return "left-%d"%i
 
-    def plot(self, x_series, y_series, name=None, axis=None):
+    def plot(self, x_series, y_series, name=None, axis=None, hidden=False):
         data = []
         for i in range(len(x_series)):
             if self.format_time:
@@ -88,5 +90,6 @@ class Plotter:
             'name': name,
             'data': data,
             'axis': axis,
+            'hidden': hidden
         })
         self.ntraces += 1
