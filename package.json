@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/windborne/py_grapher#readme",
   "dependencies": {
-    "@windborne/grapher": "^1.9.9",
+    "@windborne/grapher": "^1.10.15",
     "react": "^16.14.0",
     "react-dom": "^16.14.0"
   },

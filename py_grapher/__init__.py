@@ -4,9 +4,8 @@ import json
 import os
 import datetime
 
-
 class Plotter:
-    def __init__(self, output_name=None,title=None,format_time=None):
+    def __init__(self, output_name=None,title=None,format_time=None,open_browser=True):
         self.series = []
         self.bounds = []
         self.used_axis = set()
@@ -21,6 +20,7 @@ class Plotter:
             else:
                 self.output_name = "grapher.html"
         self.ntraces = 0
+        self.open_browser = open_browser
 
 
 
@@ -50,7 +50,8 @@ class Plotter:
         with open(outfile, 'w') as file:
             file.write(html_contents)
 
-        webbrowser.open('file://' + str(os.getcwd()) + '/' + outfile, new=2)
+        if self.open_browser:
+            webbrowser.open('file://' + str(os.getcwd()) + '/' + outfile, new=2)
 
     def index(self, x_series):
         return x_series
@@ -75,7 +76,7 @@ class Plotter:
             i +=1
         return "left-%d"%i
 
-    def plot(self, x_series, y_series, name=None, axis=None, hidden=False):
+    def plot(self, x_series, y_series, name=None, axis=None, hidden=False,color=None):
         data = []
         for i in range(len(x_series)):
             if self.format_time:
@@ -86,10 +87,13 @@ class Plotter:
         if axis is None:
             axis = self.getNextAxis()
         self.used_axis.add(axis)
-        self.series.append({
+        series_dict = {
             'name': name,
             'data': data,
             'axis': axis,
-            'hidden': hidden
-        })
+            'hidden': hidden,
+            'color': color
+        }
+        self.series.append(series_dict)
         self.ntraces += 1
+        return series_dict

@@ -313,3 +313,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+*.wasm
