@@ -5,13 +5,13 @@ import os
 import datetime
 
 class Plotter:
-    def __init__(self, output_name=None,title=None,format_time=None,open_browser=True):
+    def __init__(self, output_name=None,title=None,format_time=None,open_browser=True,output_dir="py_grapher"):
         self.series = []
         self.bounds = []
         self.used_axis = set()
         self.title = title
         self.output_name = output_name
-        self.output_dir = "py_grapher"
+        self.output_dir = output_dir
         self.format_time = format_time
         os.makedirs(self.output_dir,exist_ok=True)
         if self.output_name is None:
@@ -21,6 +21,7 @@ class Plotter:
                 self.output_name = "grapher.html"
         self.ntraces = 0
         self.open_browser = open_browser
+        self.outfile = os.path.join(self.output_dir,self.output_name)
 
 
 
@@ -46,8 +47,7 @@ class Plotter:
         if self.title is not None:
             html_contents = html_contents.replace('<title>Webpack App</title>','<title>%s</title>'%self.title)
 
-        outfile = os.path.join(self.output_dir,self.output_name)
-        with open(outfile, 'w') as file:
+        with open(self.outfile, 'w') as file:
             file.write(html_contents)
 
         if self.open_browser:
@@ -76,7 +76,7 @@ class Plotter:
             i +=1
         return "left-%d"%i
 
-    def plot(self, x_series, y_series, name=None, axis=None, hidden=False,color=None):
+    def plot(self, x_series, y_series, name=None, axis=None, hidden=False,color=None,subplot=0):
         data = []
         for i in range(len(x_series)):
             if self.format_time:
@@ -92,7 +92,8 @@ class Plotter:
             'data': data,
             'axis': axis,
             'hidden': hidden,
-            'color': color
+            'color': color,
+            'graph': subplot
         }
         self.series.append(series_dict)
         self.ntraces += 1
