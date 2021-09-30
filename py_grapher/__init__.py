@@ -5,7 +5,8 @@ import os
 import datetime
 
 class Plotter:
-    def __init__(self, output_name=None,title=None,format_time=None,open_browser=True,output_dir="py_grapher"):
+    def __init__(self, output_name=None,title=None,format_time=None,open_browser=True,output_dir="py_grapher", extra=""):
+        self.extra = extra
         self.series = []
         self.bounds = []
         self.used_axis = set()
@@ -42,7 +43,7 @@ class Plotter:
         with open(str(base_dir) + '/index.html', 'r') as file :
             html_contents = file.read()
         
-        html_contents = html_contents.replace('</body>', '<script>' + self.script_contents() + '</script></body>')
+        html_contents = html_contents.replace('</body>', self.extra + '<script>' + self.script_contents() + '</script></body>')
         
         if self.title is not None:
             html_contents = html_contents.replace('<title>Webpack App</title>','<title>%s</title>'%self.title)
@@ -51,7 +52,7 @@ class Plotter:
             file.write(html_contents)
 
         if self.open_browser:
-            webbrowser.open('file://' + str(os.getcwd()) + '/' + outfile, new=2)
+            webbrowser.open('file://' + str(os.getcwd()) + '/' + self.outfile, new=2)
 
     def index(self, x_series):
         return x_series
