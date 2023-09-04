@@ -5,7 +5,7 @@ import os
 import datetime
 
 class Plotter:
-    def __init__(self, output_name=None,title=None,format_time=None,open_browser=True,output_dir="py_grapher", extra=""):
+    def __init__(self, output_name=None,title=None,format_time=None,open_browser=True,webgl=True,output_dir="py_grapher", extra=""):
         self.extra = extra
         self.series = []
         self.bounds = []
@@ -14,6 +14,7 @@ class Plotter:
         self.output_name = output_name
         self.output_dir = output_dir
         self.format_time = format_time
+        self.webgl = webgl
         os.makedirs(self.output_dir,exist_ok=True)
         if self.output_name is None:
             if self.title is not None:
@@ -34,8 +35,14 @@ class Plotter:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.render()
 
+    def grapher_props(self):
+        return {
+            'series': self.series,
+            'webgl': self.webgl
+        }
+
     def script_contents(self):
-        return 'renderGrapher({ series: ' + json.dumps(self.series) + ', boundsSelectors: ' + '[%s]'%(','.join(self.bounds)) + '}' + ');'
+        return 'renderGrapher(' + json.dumps(self.grapher_props())[:-1] + ', boundsSelectors: ' + '[%s]'%(','.join(self.bounds)) + '}' + ');'
 
     def render(self):
         base_dir = pathlib.Path(__file__).parent.absolute()
